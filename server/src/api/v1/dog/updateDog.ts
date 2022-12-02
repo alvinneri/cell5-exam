@@ -8,7 +8,8 @@ const updateDog = async (
   response: Response,
   next: NextFunction
 ) => {
-  const { params, body } = request;
+  const { params, body, user } = request;
+  const { _id }: any = user;
   const dogId = params.dogId;
 
   if (!body.photo) {
@@ -20,18 +21,14 @@ const updateDog = async (
   }
 
   try {
-    const dog: DogDocument | null = await Dog.findOneAndUpdate(
-      { _id: dogId },
-      body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
-
+    await Dog.findOneAndUpdate({ _id: dogId }, body, {
+      new: true,
+      runValidators: true,
+    });
+    const dogs = await Dog.find({ owner: _id });
     return response.status(200).json({
       success: true,
-      data: dog,
+      data: dogs,
       message: "Success",
     });
   } catch (error) {

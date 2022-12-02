@@ -1,0 +1,23 @@
+.header {
+  max-height: 10vh;
+  background-color: white !important;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.companyName {
+  font-weight: 700;
+  font-size: 1.5em;
+  color: #663399;
+}
+
+.companyName:hover {
+  color: #663399;
+  cursor: pointer;
+}
+
+.link {
+  text-decoration: none;
+  padding-left: 2em;
+  color: #000000;
+}

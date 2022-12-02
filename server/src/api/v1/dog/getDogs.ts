@@ -8,8 +8,10 @@ const getDogs = async (
   response: Response,
   next: NextFunction
 ) => {
-  const { user } = request;
+  const { user, query } = request;
   const { _id }: any = user;
+  const { search = "" } = query;
+  const searchString = search;
   try {
     if (!user && _.isNil(_id)) {
       return response.status(401).json({
@@ -19,7 +21,12 @@ const getDogs = async (
       });
     }
 
-    const dogs = await Dog.find({ owner: _id });
+    const dogs = await Dog.find({
+      owner: _id,
+      ...(searchString && {
+        name: searchString.toString().toLowerCase(),
+      }),
+    });
 
     return response.status(200).json({
       success: true,

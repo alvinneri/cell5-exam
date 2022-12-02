@@ -16,10 +16,6 @@ router.use(
   user
 );
 
-router.use(
-  "/api/v1/dogs",
-  passport.authenticate("jwt", { session: false }),
-  dog
-);
+router.use("/api/v1/dogs", dog);
 
 export default router;

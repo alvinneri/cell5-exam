@@ -1,0 +1,11 @@
+.signupContainer {
+    text-align: center;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border: none;
+    width: 800px;
+    height: 500px;
+    background: linear-gradient(to left, white 55%, #663399 45%);
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
