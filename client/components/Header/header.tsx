@@ -75,9 +75,11 @@ const HeaderComponent = () => {
             <Link href="/" className={headerStyle.link}>
               Discover
             </Link>
-            <Link href="/dogs" className={headerStyle.link}>
-              My Dogs
-            </Link>
+            {user && (
+              <Link href="/dogs" className={headerStyle.link}>
+                My Dogs
+              </Link>
+            )}
           </Col>
           <Col span={3} offset={3}>
             <Space size="large">

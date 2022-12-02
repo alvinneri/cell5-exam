@@ -1,15 +1,24 @@
 import styles from "../styles/Home.module.css";
-import { Input } from "antd";
+import { Input, Skeleton } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import dogService from "../services/dog";
 import ImageComponent from "../components/Image/image";
 import ButtonComponent from "../components/Buttons/button";
 import useAddDog from "../hooks/useAddDog";
 import ModalComponent from "../components/Modal/modal";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { message } from "antd";
+import { GlobalContext } from "./wrappedApp";
+
+export interface User {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+}
 
 export default function Home() {
+  const { user }: any = useContext(GlobalContext);
   const [openModal, setOpenModal] = useState(false);
   const [name, setName] = useState("");
 
@@ -18,6 +27,7 @@ export default function Home() {
   };
 
   const handleOpenModal = () => {
+    if (!user) return message.error("You need to login to add dogs");
     setOpenModal(true);
   };
 
@@ -69,12 +79,19 @@ export default function Home() {
             disabled={isFetching}
           />
         </div>
-        <ImageComponent
-          data-testid="dog-image"
-          imageSrc={dog?.data.data.message}
-          label="This is a sample image."
-          styles={{ width: "500px", height: "500px", borderRadius: "1em" }}
-        />
+        {isFetching ? (
+          <Skeleton.Image
+            active={isFetching}
+            style={{ width: "500px", height: "500px", borderRadius: "1em" }}
+          />
+        ) : (
+          <ImageComponent
+            data-testid="dog-image"
+            imageSrc={dog?.data.data.message}
+            label="This is a sample image."
+            styles={{ width: "500px", height: "500px", borderRadius: "1em" }}
+          />
+        )}
       </div>
       <ModalComponent
         title="Add Dog"
