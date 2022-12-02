@@ -48,6 +48,7 @@ export default function Home() {
       <div>
         <div className={styles.navigation}>
           <ButtonComponent
+            data-testid="adddogs"
             onClick={handleOpenModal}
             label="ADD TO MY DOGS"
             styles={{
@@ -57,6 +58,7 @@ export default function Home() {
             }}
           />
           <ButtonComponent
+            data-testid="next"
             label="NEXT"
             styles={{
               marginBottom: "1em",
@@ -68,6 +70,7 @@ export default function Home() {
           />
         </div>
         <ImageComponent
+          data-testid="dog-image"
           imageSrc={dog?.data.data.message}
           label="This is a sample image."
           styles={{ width: "500px", height: "500px", borderRadius: "1em" }}

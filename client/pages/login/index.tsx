@@ -2,11 +2,9 @@ import React, { useEffect } from "react";
 import LoginComponent from "../../components/Login/login";
 import ButtonComponent from "../../components/Buttons/button";
 import Link from "next/link";
-import { Layout } from "antd";
+
 import Cookies from "js-cookie";
 import Router from "next/router";
-
-const { Content, Footer, Header } = Layout;
 
 const LoginPage = () => {
   useEffect(() => {
