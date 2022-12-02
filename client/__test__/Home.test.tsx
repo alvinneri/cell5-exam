@@ -17,9 +17,9 @@ describe("Home Page Test", () => {
     </QueryClientProvider>
   );
 
-  const ImageDog = screen.getAllByRole("img");
+  const Buttons = screen.getAllByRole("button");
 
-  test("ImageDog Rendering", () => {
-    expect(ImageDog).toBeTruthy();
+  test("Buttons Rendering", () => {
+    expect(Buttons).toBeTruthy();
   });
 });
